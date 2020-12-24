@@ -10,7 +10,7 @@ public class MainActivity extends BaseApiDemo {
 
     @Override
     protected String getInitPathPrefix() {
-        return "00";
+        return "";
     }
 
 }

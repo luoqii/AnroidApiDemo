@@ -1,16 +1,16 @@
-package com.bysong.android.apidemo;
+package x.android.provider.MediaStore;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.TextUtils;
 import android.view.View;
+
+import com.bysong.android.apidemo.R;
 
 import org.bbs.android.log.Log;
 
@@ -21,7 +21,7 @@ public class MediaStore_Images_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_media_store__images);
+        setContentView(R.layout.activity_media_store_images);
     }
 
     public void insertImage(View view) {

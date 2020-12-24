@@ -10,7 +10,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidApiDemo">
-        <activity android:name=".MediaStore_Images_Activity"  android:label="00/MediaStore/Image">
+        <activity android:name="x.android.provider.MediaStore.MediaStore_Images_Activity"
+            android:label="android/provider/MediaStore">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.SAMPLE_CODE"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="x.android.content.ContentResolver.ContentResolver_Activity"
+            android:label="android/content/ContentResolver">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE"/>
