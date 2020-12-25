@@ -13,6 +13,8 @@ import android.view.View;
 
 import org.bbs.android.log.Log;
 
+import java.util.Date;
+
 public class SystemActivity extends AppCompatActivity {
 
     private static final String TAG = SystemActivity.class.getSimpleName();
@@ -36,5 +38,15 @@ public class SystemActivity extends AppCompatActivity {
         long timeMillis =  System.currentTimeMillis();
         Log.d(TAG, "timeMillis:" + timeMillis);
 
+    }
+
+    public void setProperty(View view) {
+        String key = "key";
+        String value = "value " + new Date();
+        String previous = System.setProperty(key, value);
+        Log.d(TAG, "previous:" + previous);
+
+        String newValue = System.getProperty(key);
+        Log.d(TAG, "newValue:" + newValue);
     }
 }
