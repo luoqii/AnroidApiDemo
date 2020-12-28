@@ -50,7 +50,7 @@
         </activity>
 
         <provider
-            android:name="x.androidx.core.content.MyFileProvider"
+            android:name="x.androidx.core.content.ExportableFileProvider"
             android:authorities="com.bysong.android.apidemo.fileprovider"
             android:exported="true"
             android:grantUriPermissions="true">
