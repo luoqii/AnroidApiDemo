@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.view.View;
 
+import org.bbs.android.commonlib.ExceptionCatcher;
 import org.bbs.android.log.Log;
 
 import java.io.File;
@@ -20,6 +21,7 @@ public class APP extends Application {
     public void onCreate() {
         super.onCreate();
 
+        ExceptionCatcher.attachExceptionHandler(this);
         initFileProviderFiles();
     }
 

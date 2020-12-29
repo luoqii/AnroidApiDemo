@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.bysong.android.apidemo">
 
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 为保证demo 的效果，默认不添加任何权限，测试时自行添加，完成后请注释掉 -->
+<!--    <uses-permission-->
+<!--        android:name="android.permission.WRITE_SECURE_SETTINGS"-->
+<!--        tools:ignore="ProtectedPermissions" />-->
+<!--    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>-->
+<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>-->
     <application
         android:name=".APP"
         android:allowBackup="true"
@@ -13,9 +18,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidApiDemo">
         <activity
+            android:name="x.android.provider.Settings.Setting_Activity"
+            android:label="android/provider/Settings">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="x.java.lang.SystemActivity"
-            android:label="java/lang/System"
-            android:theme="@style/Theme.AndroidApiDemo.NoActionBar">
+            android:label="java/lang/System">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
