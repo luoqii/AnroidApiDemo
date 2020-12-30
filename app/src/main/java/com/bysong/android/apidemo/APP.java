@@ -1,17 +1,14 @@
 package com.bysong.android.apidemo;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
-import android.database.Cursor;
-import android.net.Uri;
-import android.provider.MediaStore;
-import android.view.View;
 
 import org.bbs.android.commonlib.ExceptionCatcher;
-import org.bbs.android.log.Log;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 
 public class APP extends Application {
 
@@ -23,6 +20,31 @@ public class APP extends Application {
 
         ExceptionCatcher.attachExceptionHandler(this);
         initFileProviderFiles();
+
+
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+
+            @SuppressLint("WorldReadableFiles")
+            @Override
+            public void uncaughtException(Thread thread, Throwable ex) {
+                PrintStream writer = null;
+                try {
+                    writer.write(1);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+        npe();
+    }
+
+    public static void npe() {
+        String nullStr = null;
+        if (nullStr.length() > 0) {
+            ; // do nothing
+        }
     }
 
     void initFileProviderFiles(){
@@ -48,5 +70,6 @@ public class APP extends Application {
             }
         }
     }
+
 
 }

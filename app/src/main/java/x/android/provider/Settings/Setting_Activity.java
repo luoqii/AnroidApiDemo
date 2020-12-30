@@ -3,7 +3,6 @@ package x.android.provider.Settings;
 import android.app.Activity;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.text.NoCopySpan;
 
 import org.bbs.android.log.Log;
 

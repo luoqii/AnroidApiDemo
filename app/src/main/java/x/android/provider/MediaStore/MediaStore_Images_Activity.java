@@ -1,7 +1,5 @@
 package x.android.provider.MediaStore;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -9,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bysong.android.apidemo.R;
 
