@@ -37,7 +37,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.3.1'
 
     compile 'org.bbs.android:log:0.5'
-    compile 'org.bbs.android.commonlib:commonlib:0.7'
+    compile 'org.bbs.android.commonlib:commonlib:0.7.3'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
