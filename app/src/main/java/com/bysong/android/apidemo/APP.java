@@ -18,26 +18,25 @@ public class APP extends Application {
     public void onCreate() {
         super.onCreate();
 
-        ExceptionCatcher.attachExceptionHandler(this);
+//        ExceptionCatcher.attachExceptionHandler(this);
         initFileProviderFiles();
 
+//        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+//
+//            @SuppressLint("WorldReadableFiles")
+//            @Override
+//            public void uncaughtException(Thread thread, Throwable ex) {
+//                PrintStream writer = null;
+//                try {
+//                    writer.write(1);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        });
 
-        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-
-            @SuppressLint("WorldReadableFiles")
-            @Override
-            public void uncaughtException(Thread thread, Throwable ex) {
-                PrintStream writer = null;
-                try {
-                    writer.write(1);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-
-        npe();
+//        npe();
     }
 
     public static void npe() {

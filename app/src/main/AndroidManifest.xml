@@ -2,13 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.bysong.android.apidemo">
-
     <!-- 为保证demo 的效果，默认不添加任何权限，测试时自行添加，完成后请注释掉 -->
-<!--    <uses-permission-->
-<!--        android:name="android.permission.WRITE_SECURE_SETTINGS"-->
-<!--        tools:ignore="ProtectedPermissions" />-->
-<!--    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- <uses-permission -->
+    <!-- android:name="android.permission.WRITE_SECURE_SETTINGS" -->
+    <!-- tools:ignore="ProtectedPermissions" /> -->
+    <!-- <uses-permission android:name="android.permission.WRITE_SETTINGS"/> -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".APP"
         android:allowBackup="true"
@@ -17,10 +20,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidApiDemo">
+        <activity android:name="x.android.app.Activity.Activity_Activity"
+            android:label="android/app/Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="x.android.bluetooth.le.BluetoothLeScanner_Activity"
+            android:label="android/bluetooth/le/BluetoothLeScanner">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="x.android.bluetooth.BluetoothAdapter_MainActivity"
+            android:label="android/bluetooth/BluetoothAdapter">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="x.android.provider.Settings.Setting_Activity"
             android:label="android/provider/Settings">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +58,6 @@
         <activity
             android:name="x.java.lang.SystemActivity"
             android:label="java/lang/System">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -62,26 +89,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <provider
             android:name="x.androidx.core.content.ExportableFileProvider"
             android:authorities="com.bysong.android.apidemo.fileprovider"
             android:exported="true"
             android:grantUriPermissions="true">
-            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths">
-            </meta-data>
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
         </provider>
-<!--        <provider-->
-<!--            android:name="androidx.core.content.FileProvider"-->
-<!--            android:authorities="com.bysong.android.apidemo.fileprovider"-->
-<!--            android:exported="true"-->
-<!--            android:grantUriPermissions="true">-->
-<!--            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"-->
-<!--                android:resource="@xml/file_paths">-->
-<!--            </meta-data>-->
-<!--        </provider>-->
-
     </application>
 
 </manifest>
