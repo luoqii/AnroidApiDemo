@@ -4,11 +4,20 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 
 import org.bbs.android.commonlib.ExceptionCatcher;
+import org.bbs.android.log.Log;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+
+import no.nordicsemi.android.log.LogContract;
+import no.nordicsemi.android.log.LogSession;
+import no.nordicsemi.android.log.Logger;
 
 public class APP extends Application {
 
@@ -17,6 +26,8 @@ public class APP extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        initLog();
 
 //        ExceptionCatcher.attachExceptionHandler(this);
         initFileProviderFiles();
@@ -37,6 +48,8 @@ public class APP extends Application {
 //        });
 
 //        npe();
+
+        Log.d(TAG, this + " onCreate.");
     }
 
     public static void npe() {
@@ -44,6 +57,48 @@ public class APP extends Application {
         if (nullStr.length() > 0) {
             ; // do nothing
         }
+    }
+
+    void initLog() {
+        java.util.logging.Logger logger = java.util.logging.Logger.getLogger("com.bysong.android.apidemo");
+        logger.setLevel(Level.ALL);
+        logger.setUseParentHandlers(false);
+
+        LogSession logSession = Logger.newSession(this, "api", "log");
+        Handler h = new Handler(){
+
+            @Override
+            public void publish(LogRecord record) {
+                android.util.Log.d(TAG, "publish record:" + record);
+                String msg = "";
+                Log.Record r = (Log.Record)record;
+                msg = r.getMessage();
+                no.nordicsemi.android.log.Logger.log(logSession, LogContract.Log.Level.DEBUG, msg);
+            }
+
+            @Override
+            public void flush() {
+
+            }
+
+            @Override
+            public void close() throws SecurityException {
+
+            }
+        };
+        logger.addHandler(h);
+
+//        FileHandler fileHanlder = null;
+//        try {
+//            File dir = new File("/sdcard/log/");
+//            dir.mkdirs();
+//            fileHanlder = new FileHandler(dir.getPath() + "/log_%g_%u.log.txt");
+//            logger.addHandler(fileHanlder);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        Log.setLogger(logger);
     }
 
     void initFileProviderFiles(){
