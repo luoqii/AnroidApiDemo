@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.bysong.android.apidemo">
+
     <!-- 为保证demo 的效果，默认不添加任何权限，测试时自行添加，完成后请注释掉 -->
     <!-- <uses-permission -->
     <!-- android:name="android.permission.WRITE_SECURE_SETTINGS" -->
@@ -11,6 +12,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
     <application
         android:name=".APP"
