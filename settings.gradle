@@ -1,3 +1,24 @@
-include ':fileproviderclient'
+//include ':fileproviderclient'
 include ':app'
 rootProject.name = "AndroidApiDemo"
+
+
+gradle.addBuildListener(new BuildListener() {
+    void buildStarted(Gradle gradle) {
+        println 'buildStarted gradle:' + gradle
+    }
+    void settingsEvaluated(Settings settings) {
+        println 'settingsEvaluated settings:' + settings
+        // var1.gradle.rootProject 这里访问Project对象时会报错，还未完成Project的初始化
+        settings.include(':fileproviderclient')
+    }
+    void projectsLoaded(Gradle gradle) {
+        println 'projectsLoaded gradle:' + gradle
+    }
+    void projectsEvaluated(Gradle gradle) {
+        println 'projectsEvaluated gradle:' + gradle
+    }
+    void buildFinished(BuildResult result) {
+        println 'buildFinished result:' + result
+    }
+})
