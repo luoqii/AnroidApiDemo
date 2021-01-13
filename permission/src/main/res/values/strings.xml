@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Permission</string>
+    <string name="p_desc">com.bysong.android.apidemo.P_DESC</string>
+    <string name="p_group_desc">com.bysong.android.apidemo.P_GROUP_DESC</string>
+</resources>

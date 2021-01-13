@@ -1,4 +1,4 @@
-//include ':fileproviderclient'
+include ':permission'//include ':fileproviderclient'
 include ':app'
 rootProject.name = "AndroidApiDemo"
 
