@@ -2,13 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bysong.android.permission">
 
-<!--    <permission android:name="com.bysong.android.apidemo.permission"-->
-<!--        android:label="com.bysong.android.apidemo.P_LABEL"-->
-<!--        android:description="@string/p_desc"-->
-<!--        android:protectionLevel="signature"/>-->
-<!--    <permission-group android:name="com.bysong.android.apidemo.P_GROUD"-->
-<!--        android:label="P_GROUD_LABEL"-->
-<!--        android:description="@string/p_group_desc"/>-->
+    <permission android:name="com.bysong.android.apidemo.permission"
+        android:label="com.bysong.android.apidemo.P_LABEL"
+        android:description="@string/p_desc"
+        android:protectionLevel="signature"/>
+    <permission-group android:name="com.bysong.android.apidemo.P_GROUD"
+        android:label="P_GROUD_LABEL"
+        android:description="@string/p_group_desc"/>
 
     <application
         android:allowBackup="true"
@@ -18,9 +18,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidApiDemo">
         <activity android:name=".MainActivity"
+            android:permission="com.bysong.android.apidemo.permission"
             android:label="permission">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN_P" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

@@ -25,14 +25,15 @@ import java.util.List;
     }
 
     public void queryIntentActivities(View view) {
-        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        Intent mainIntent = new Intent(Intent.ACTION_MAIN);
         mainIntent.addCategory(Intent.CATEGORY_SAMPLE_CODE);
+//        mainIntent = new Intent("android.intent.action.MAIN_P");
 //        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-        mainIntent.addFlags(Intent.FLA)
 
         PackageManager pm = getPackageManager();
-        List<ResolveInfo> list = pm.queryIntentActivities(mainIntent, 0);
+        List<ResolveInfo> list = pm.queryIntentActivities(mainIntent, PackageManager.MATCH_ALL);
 
+        // on emuator 11 can not get permission act.
         Log.d(TAG, "list:" + list);
     }
 }

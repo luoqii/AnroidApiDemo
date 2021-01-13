@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.bysong.android.apidemo">
 
-    <uses-permission android:name="com.bysong.android.apidemo.permission" /> <!-- 为保证demo 的效果，默认不添加任何权限，测试时自行添加，完成后请注释掉 -->
+<!--    <uses-permission android:name="com.bysong.android.apidemo.permission" /> -->
+
+    <!-- 为保证demo 的效果，默认不添加任何权限，测试时自行添加，完成后请注释掉 -->
     <!-- <uses-permission -->
     <!-- android:name="android.permission.WRITE_SECURE_SETTINGS" -->
     <!-- tools:ignore="ProtectedPermissions" /> -->
@@ -123,6 +125,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN_P" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
