@@ -23,7 +23,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidApiDemo">
-        <activity android:name="x.java.net.Socket_Activity"
+        <activity android:name="x.androidx.core.app.NotificationManagerCompatActivity"
+            android:label="androidx/core/app/NotificationManager">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="x.java.net.Socket_Activity"
             android:label="java/net/Socket">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +40,8 @@
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
-        <activity android:name="x.java.net.NetworkInterface_Activity"
+        <activity
+            android:name="x.java.net.NetworkInterface_Activity"
             android:label="java/net/NetworkInterface">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

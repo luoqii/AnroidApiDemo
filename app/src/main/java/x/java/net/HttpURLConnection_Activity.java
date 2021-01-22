@@ -1,7 +1,12 @@
 package x.java.net;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -61,4 +66,5 @@ public class HttpURLConnection_Activity extends AppCompatActivity {
 
         Log.d(TAG, "data:" + new String(data));
     }
+
 }
