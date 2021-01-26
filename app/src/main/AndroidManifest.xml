@@ -23,7 +23,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidApiDemo">
-        <activity android:name="x.androidx.core.app.NotificationManagerCompatActivity"
+        <activity android:name="x.android.hardware.ConsumerIrManagerActivity"
+            android:label="android/hardware/ConsumerIrManager">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="x.androidx.core.app.NotificationManagerCompatActivity"
             android:label="androidx/core/app/NotificationManager">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

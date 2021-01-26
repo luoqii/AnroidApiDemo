@@ -3,6 +3,8 @@ include ':permission'//include ':fileproviderclient'
 include ':app'
 rootProject.name = "AndroidApiDemo"
 
+include ':nearby:connectionapi:discoverer'
+include ':nearby:connectionapi:advertiser'
 
 gradle.addBuildListener(new BuildListener() {
     void buildStarted(Gradle gradle) {
