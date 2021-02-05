@@ -1,3 +1,4 @@
+include ':wearos:watch'
 include ':retrofit'
 include ':permission'//include ':fileproviderclient'
 include ':app'
