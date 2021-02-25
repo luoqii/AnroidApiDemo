@@ -30,6 +30,7 @@ public class BluetoothGatt_Activity extends Activity {
         setContentView(R.layout.activity_bluetooth_gatt);
 
         mMacEV = findViewById(R.id.mac);
+        mMacEV.setText("54:0E:2D:0F:6A:D6");
     }
 
     public void connect(View view) {
@@ -69,10 +70,15 @@ public class BluetoothGatt_Activity extends Activity {
     }
 
     public void bind(View view) {
+        mDeviceMac = mMacEV.getText().toString().toUpperCase();
         createBond(BluetoothAdapter.getDefaultAdapter().getRemoteDevice(mDeviceMac));
     }
 
+    //android.permission.BLUETOOTH_PRIVILEGED
+    // system app only
     public void unbind(View view) {
+        mDeviceMac = mMacEV.getText().toString().toUpperCase();
+        removeBond(BluetoothAdapter.getDefaultAdapter().getRemoteDevice(mDeviceMac));
     }
 
     public static boolean createBond(BluetoothDevice device, int transport) {
@@ -92,6 +98,19 @@ public class BluetoothGatt_Activity extends Activity {
         boolean result = false;
         try {
             Method localMethod = device.getClass().getMethod("createBond", new Class[]{});
+            if (localMethod != null) {
+                return (Boolean) localMethod.invoke(device, new Object[]{});
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static boolean removeBond(BluetoothDevice device) {
+        boolean result = false;
+        try {
+            Method localMethod = device.getClass().getMethod("removeBond", new Class[]{});
             if (localMethod != null) {
                 return (Boolean) localMethod.invoke(device, new Object[]{});
             }

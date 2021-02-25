@@ -65,7 +65,7 @@ public class App extends Application {
 
             @Override
             public void publish(LogRecord record) {
-//                android.util.Log.d(TAG, "publish record:" + record);
+                android.util.Log.d(TAG, "publish record:" + record);
                 String msg = "";
                 Log.Record r = (Log.Record)record;
                 msg = r.getMessage();

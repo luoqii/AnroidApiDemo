@@ -37,25 +37,4 @@ public class Activity_Activity extends AppCompatActivity {
         requestPermissions(permissions, 0);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        new MenuInflater(this).inflate(R.menu.main_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (R.id.installNrfLogger == item.getItemId()) {
-            installNrfLogger(null);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @RequiresPermission("android.permission.REQUEST_INSTALL_PACKAGES")
-    public void installNrfLogger(View view){
-        String assetFilePath = "apk/nRFLogger.apk";
-        String destFilePath = new File(Utils.getApp().getExternalCacheDir(), "app.apk").toString();
-        ResourceUtils.copyFileFromAssets(assetFilePath, destFilePath);
-        AppUtils.installApp(destFilePath);
-    }
 }
