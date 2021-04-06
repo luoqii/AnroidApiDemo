@@ -35,9 +35,19 @@
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
+
+        <activity
+            android:name="x.javax.crypto.CipherActivity"
+            android:label="javax/crypto/Cipher">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="x.android.service.notification.NotificationServiceActivity"
-            android:label="android/service/notification/NotificationServiceActivity">
+            android:label="android/service/notification/NotificationListenerService">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

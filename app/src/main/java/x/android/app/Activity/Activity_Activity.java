@@ -32,7 +32,9 @@ public class Activity_Activity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void requestPermissions(View view) {
         String[] permissions = new String[]{
-                Manifest.permission.ACCESS_FINE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION,
+
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
         };
         requestPermissions(permissions, 0);
     }
