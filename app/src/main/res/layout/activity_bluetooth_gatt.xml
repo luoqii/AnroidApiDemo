@@ -14,15 +14,87 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="18:E7:77:00:0c:40"
             android:hint="mac"
             android:id="@+id/mac" />
-
-        <Button
+        <com.google.android.flexbox.FlexboxLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="connectGatt"
-            android:onClick="open" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            app:flexWrap="wrap"
+            app:alignItems="stretch"
+            app:alignContent="stretch" >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="open true"
+                android:onClick="connect_true" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="open false"
+                android:onClick="connect_false" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="open true auto"
+                android:onClick="connect_true_auto" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="open true le"
+                android:onClick="connect_true_le" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="open true bredr"
+                android:onClick="connect_true_bredr" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="clear phy"
+                android:onClick="clear_phy" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="phy 1m"
+                android:onClick="phy_1m" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="phy 2m"
+                android:onClick="phy_2m" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="phy coded"
+                android:onClick="phy_coded" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="open auto phy"
+                android:onClick="connect_auto_phy" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="open le phy"
+                android:onClick="connect_le_phy" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="open bredr phy"
+                android:onClick="connect_bredr_phy" />
+        </com.google.android.flexbox.FlexboxLayout>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

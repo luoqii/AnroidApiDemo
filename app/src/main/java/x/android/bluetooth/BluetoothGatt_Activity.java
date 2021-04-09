@@ -16,13 +16,23 @@ import org.bbs.android.log.Log;
 
 import java.lang.reflect.Method;
 
+import static android.bluetooth.BluetoothDevice.PHY_LE_1M_MASK;
+import static android.bluetooth.BluetoothDevice.PHY_LE_2M_MASK;
+import static android.bluetooth.BluetoothDevice.PHY_LE_CODED;
+import static android.bluetooth.BluetoothDevice.PHY_LE_CODED_MASK;
+import static android.bluetooth.BluetoothDevice.TRANSPORT_AUTO;
+import static android.bluetooth.BluetoothDevice.TRANSPORT_BREDR;
+import static android.bluetooth.BluetoothDevice.TRANSPORT_LE;
+
 public class BluetoothGatt_Activity extends Activity {
 
     private static final String TAG = BluetoothGatt_Activity.class.getSimpleName();
+
     private EditText mMacEV;
     private BluetoothGatt mGatt;
     private String mDeviceMac;
     private BluetoothGattCallback mGattCallback;
+    private int mPhy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +41,15 @@ public class BluetoothGatt_Activity extends Activity {
 
         mMacEV = findViewById(R.id.mac);
         mMacEV.setText("54:0E:2D:0F:6A:D6");
+        mMacEV.setText("18:E7:77:00:05:66");
     }
 
     public void connect(View view) {
         mGatt.connect();
     }
 
-    public void open(View view) {
+
+    public void connect_false(View view) {
         mDeviceMac = mMacEV.getText().toString().toUpperCase();
         mGattCallback = new BluetoothGattCallback() {
             @Override
@@ -56,6 +68,147 @@ public class BluetoothGatt_Activity extends Activity {
         mGatt = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(mDeviceMac).connectGatt(this,
                 false, mGattCallback);
     }
+
+    public void connect_true(View view) {
+        mDeviceMac = mMacEV.getText().toString().toUpperCase();
+        mGattCallback = new BluetoothGattCallback() {
+            @Override
+            public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
+                super.onConnectionStateChange(gatt, status, newState);
+                Log.d(TAG, "onConnectionStateChange. status:" + status + " newState:" + newState);
+            }
+
+            @Override
+            public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+                super.onServicesDiscovered(gatt, status);
+
+                Log.d(TAG, "onServicesDiscovered status:" + status);
+            }
+        };
+        mGatt = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(mDeviceMac).connectGatt(this,
+                true, mGattCallback);
+    }
+
+    public void connect_true_auto(View view) {
+        mDeviceMac = mMacEV.getText().toString().toUpperCase();
+        mGattCallback = new BluetoothGattCallback() {
+            @Override
+            public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
+                super.onConnectionStateChange(gatt, status, newState);
+                Log.d(TAG, "onConnectionStateChange. status:" + status + " newState:" + newState);
+            }
+
+            @Override
+            public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+                super.onServicesDiscovered(gatt, status);
+
+                Log.d(TAG, "onServicesDiscovered status:" + status);
+            }
+        };
+        mGatt = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(mDeviceMac).connectGatt(this,
+                true, mGattCallback, TRANSPORT_AUTO);
+    }
+
+    public void connect_true_le(View view) {
+        mDeviceMac = mMacEV.getText().toString().toUpperCase();
+        mGattCallback = new BluetoothGattCallback() {
+            @Override
+            public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
+                super.onConnectionStateChange(gatt, status, newState);
+                Log.d(TAG, "onConnectionStateChange. status:" + status + " newState:" + newState);
+            }
+
+            @Override
+            public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+                super.onServicesDiscovered(gatt, status);
+
+                Log.d(TAG, "onServicesDiscovered status:" + status);
+            }
+        };
+        mGatt = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(mDeviceMac).connectGatt(this,
+                true, mGattCallback, TRANSPORT_LE);
+    }
+
+    public void connect_true_bredr(View view) {
+        mDeviceMac = mMacEV.getText().toString().toUpperCase();
+        mGattCallback = new BluetoothGattCallback() {
+            @Override
+            public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
+                super.onConnectionStateChange(gatt, status, newState);
+                Log.d(TAG, "onConnectionStateChange. status:" + status + " newState:" + newState);
+            }
+
+            @Override
+            public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+                super.onServicesDiscovered(gatt, status);
+
+                Log.d(TAG, "onServicesDiscovered status:" + status);
+            }
+        };
+        mGatt = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(mDeviceMac).connectGatt(this,
+                true, mGattCallback, BluetoothDevice.TRANSPORT_BREDR);
+    }
+
+    public void connect_auto_phy(View view) {
+        mDeviceMac = mMacEV.getText().toString().toUpperCase();
+        mGattCallback = new BluetoothGattCallback() {
+            @Override
+            public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
+                super.onConnectionStateChange(gatt, status, newState);
+                Log.d(TAG, "onConnectionStateChange. status:" + status + " newState:" + newState);
+            }
+
+            @Override
+            public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+                super.onServicesDiscovered(gatt, status);
+
+                Log.d(TAG, "onServicesDiscovered status:" + status);
+            }
+        };
+        mGatt = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(mDeviceMac).connectGatt(this,
+                true, mGattCallback, TRANSPORT_AUTO, mPhy);
+    }
+
+    public void connect_le_phy(View view) {
+        mDeviceMac = mMacEV.getText().toString().toUpperCase();
+        mGattCallback = new BluetoothGattCallback() {
+            @Override
+            public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
+                super.onConnectionStateChange(gatt, status, newState);
+                Log.d(TAG, "onConnectionStateChange. status:" + status + " newState:" + newState);
+            }
+
+            @Override
+            public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+                super.onServicesDiscovered(gatt, status);
+
+                Log.d(TAG, "onServicesDiscovered status:" + status);
+            }
+        };
+        mGatt = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(mDeviceMac).connectGatt(this,
+                true, mGattCallback, TRANSPORT_LE, mPhy);
+    }
+
+    public void connect_bredr_phy(View view) {
+        mDeviceMac = mMacEV.getText().toString().toUpperCase();
+        mGattCallback = new BluetoothGattCallback() {
+            @Override
+            public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
+                super.onConnectionStateChange(gatt, status, newState);
+                Log.d(TAG, "onConnectionStateChange. status:" + status + " newState:" + newState);
+            }
+
+            @Override
+            public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+                super.onServicesDiscovered(gatt, status);
+
+                Log.d(TAG, "onServicesDiscovered status:" + status);
+            }
+        };
+        mGatt = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(mDeviceMac).connectGatt(this,
+                true, mGattCallback, TRANSPORT_BREDR, mPhy);
+    }
+
 
     public void disconnect(View view) {
         mGatt.disconnect();
@@ -118,5 +271,21 @@ public class BluetoothGatt_Activity extends Activity {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public void clear_phy(View view) {
+        mPhy = 0;
+    }
+
+    public void phy_1m(View view) {
+        mPhy |= PHY_LE_1M_MASK;
+    }
+
+    public void phy_2m(View view) {
+        mPhy |= PHY_LE_2M_MASK;
+    }
+
+    public void phy_coded(View view) {
+        mPhy |= PHY_LE_CODED_MASK;
     }
 }
