@@ -21,5 +21,12 @@
             android:layout_height="wrap_content"
             android:text="stopLeScan"
             android:onClick="stopLeScan" />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="getBondedDevices"
+            android:onClick="getBondedDevices" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

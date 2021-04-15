@@ -35,6 +35,7 @@ public class BluetoothAdapter_MainActivity extends AppCompatActivity {
         mCallback = new BluetoothAdapter.LeScanCallback() {
             @Override
             public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
+                Log.d(TAG, "onLeScan. device:" + device);
                 Log.d(TAG, "onLeScan. rssi:" + rssi + " scanRecord:" + scanRecord);
             }
         };
@@ -81,5 +82,16 @@ public class BluetoothAdapter_MainActivity extends AppCompatActivity {
 
     public void stopLeScan(View view) {
         mBtAdapter.stopLeScan(mCallback);
+    }
+
+    public void getBondedDevices(View view) {
+        Set<BluetoothDevice> bonded = mBtAdapter.getBondedDevices();
+        if (null == bonded || bonded.size() == 0) {
+            Log.w(TAG, "no bounded device");
+        } else {
+            for (BluetoothDevice b : bonded) {
+                Log.d(TAG, "bounded device:" + b);
+            }
+        }
     }
 }

@@ -127,6 +127,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="x.android.bluetooth.BluetoothDevice_Activity"
+            android:label="android/bluetooth/BluetoothDevice">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="x.android.bluetooth.BluetoothGatt_Activity"
             android:label="android/bluetooth/BluetoothGatt">
             <intent-filter>

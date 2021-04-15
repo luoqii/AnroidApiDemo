@@ -2,6 +2,12 @@ plugins {
     id 'com.android.application'
 }
 
+allprojects {
+    repositories {
+        maven { url "http://dl.bintray.com/luoqii/maven" }
+    }
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -29,6 +35,7 @@ android {
 }
 
 dependencies {
+
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -38,8 +45,10 @@ dependencies {
     implementation 'org.bbs.android:log:0.5'
     implementation 'org.bbs.android.commonlib:commonlib:0.7.3'
     implementation 'com.google.android:flexbox:2.0.1'
-
+    
     implementation 'com.blankj:utilcode:1.30.5'
+    implementation 'org.bbs.android.commonlib:commonlib:0.7.4'
+
     implementation 'no.nordicsemi.android:log:2.3.0'
 
     testImplementation 'junit:junit:4.+'
