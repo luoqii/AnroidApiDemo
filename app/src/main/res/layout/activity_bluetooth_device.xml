@@ -29,6 +29,13 @@
                 android:layout_height="wrap_content"
                 android:text="getBondState "
                 android:onClick="getBondState" />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="removebound "
+                android:onClick="removebound" />
         </com.google.android.flexbox.FlexboxLayout>
 
     </LinearLayout>

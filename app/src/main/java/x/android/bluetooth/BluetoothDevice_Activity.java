@@ -12,6 +12,8 @@ import com.bysong.android.apidemo.R;
 import org.bbs.android.commonlib.BtUtils;
 import org.bbs.android.log.Log;
 
+import java.lang.reflect.Method;
+
 public class BluetoothDevice_Activity extends Activity {
     private static final String TAG = BluetoothDevice_Activity.class.getSimpleName();
 
@@ -35,5 +37,50 @@ public class BluetoothDevice_Activity extends Activity {
         Log.d(TAG, "state:" + BtUtils.toBluetoothDeviceBondStateString(state));
     }
 
+
+    public void removebound(View view) {
+        mDeviceMac = mMacEV.getText().toString().toUpperCase();
+        BluetoothDevice d = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(mDeviceMac);
+        Log.d(TAG, "removebound:" + removeBond(d));
+    }
+
+    public static boolean createBond(BluetoothDevice device, int transport) {
+        boolean result = false;
+        try {
+            Method localMethod = device.getClass().getMethod("createBond", new Class[]{int.class});
+            if (localMethod != null) {
+                return (Boolean) localMethod.invoke(device, new Object[]{transport});
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static boolean createBond(BluetoothDevice device) {
+        boolean result = false;
+        try {
+            Method localMethod = device.getClass().getMethod("createBond", new Class[]{});
+            if (localMethod != null) {
+                return (Boolean) localMethod.invoke(device, new Object[]{});
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static boolean removeBond(BluetoothDevice device) {
+        boolean result = false;
+        try {
+            Method localMethod = device.getClass().getMethod("removeBond");
+            if (localMethod != null) {
+                return (Boolean) localMethod.invoke(device, new Object[]{});
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
 }
