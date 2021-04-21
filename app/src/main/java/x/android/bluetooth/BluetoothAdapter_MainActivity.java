@@ -23,6 +23,9 @@ public class BluetoothAdapter_MainActivity extends AppCompatActivity {
 
     private BluetoothAdapter mBtAdapter ;
     private BluetoothAdapter.LeScanCallback mCallback;
+    private BluetoothProfile.ServiceListener mListener;
+    private int mProfile = BluetoothProfile.HEADSET;
+    private BluetoothProfile mProxy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,19 @@ public class BluetoothAdapter_MainActivity extends AppCompatActivity {
             public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
                 Log.d(TAG, "onLeScan. device:" + device);
                 Log.d(TAG, "onLeScan. rssi:" + rssi + " scanRecord:" + scanRecord);
+            }
+        };
+
+        mListener = new BluetoothProfile.ServiceListener() {
+            @Override
+            public void onServiceConnected(int profile, BluetoothProfile proxy) {
+                Log.d(TAG, "onServiceConnected profile:" + profile + " proxy:" + proxy);
+                mProxy = proxy;
+            }
+
+            @Override
+            public void onServiceDisconnected(int profile) {
+                Log.w(TAG, "onServiceConnected profile:" + profile);
             }
         };
     }
@@ -93,5 +109,13 @@ public class BluetoothAdapter_MainActivity extends AppCompatActivity {
                 Log.d(TAG, "bounded device:" + b);
             }
         }
+    }
+
+    public void getProfileProxy(View view) {
+        mBtAdapter.getProfileProxy(this, mListener, mProfile);
+    }
+
+    public void closeProfileProxy(View view) {
+        mBtAdapter.closeProfileProxy(mProfile, mProxy);
     }
 }

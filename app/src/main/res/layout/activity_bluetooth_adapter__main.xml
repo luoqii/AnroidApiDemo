@@ -22,7 +22,16 @@
             android:text="stopLeScan"
             android:onClick="stopLeScan" />
 
-
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="getProfileProxy"
+            android:onClick="getProfileProxy" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="closeProfileProxy"
+            android:onClick="closeProfileProxy" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
