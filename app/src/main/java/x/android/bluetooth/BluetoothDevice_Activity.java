@@ -3,22 +3,32 @@ package x.android.bluetooth;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import androidx.annotation.RequiresApi;
 
 import com.bysong.android.apidemo.R;
 
 import org.bbs.android.commonlib.BtUtils;
 import org.bbs.android.log.Log;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Method;
+import java.util.UUID;
 
 public class BluetoothDevice_Activity extends Activity {
     private static final String TAG = BluetoothDevice_Activity.class.getSimpleName();
 
     private EditText mMacEV;
     private String mDeviceMac;
+    private UUID mRfcUuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    private BluetoothSocket mBluetoothSocket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +36,13 @@ public class BluetoothDevice_Activity extends Activity {
         setContentView(R.layout.activity_bluetooth_device);
 
         mMacEV = findViewById(R.id.mac);
-        mMacEV.setText("54:0E:2D:0F:6A:D6");
-        mMacEV.setText("18:E7:77:00:05:66");
+
+        String text = "";
+        text = "54:0E:2D:0F:6A:D6";
+        text = "18:E7:77:00:05:66";
+        text = "18:E7:77:00:32:37";
+
+        mMacEV.setText(text);
     }
 
     public void getBondState(View view) {
@@ -36,7 +51,6 @@ public class BluetoothDevice_Activity extends Activity {
         int state =  d.getBondState();
         Log.d(TAG, "state:" + BtUtils.toBluetoothDeviceBondStateString(state));
     }
-
 
     public void removebound(View view) {
         mDeviceMac = mMacEV.getText().toString().toUpperCase();
@@ -83,4 +97,64 @@ public class BluetoothDevice_Activity extends Activity {
         return result;
     }
 
+    public void createRfcommSocketToServiceRecord(View view) {
+        new Thread(){
+            @Override
+            public void run() {
+//                doCreateRfcommSocketToServiceRecord(null);
+            }
+        }.start();
+
+        doCreateRfcommSocketToServiceRecord(null);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void doCreateRfcommSocketToServiceRecord(View view) {
+        mDeviceMac = mMacEV.getText().toString().toUpperCase();
+        BluetoothDevice d = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(mDeviceMac);
+        try {
+            Log.d(TAG, "before create");
+            mBluetoothSocket = d.createRfcommSocketToServiceRecord(mRfcUuid);
+            Log.d(TAG, "mBtSocket:" + mBluetoothSocket);
+            mBluetoothSocket.connect();
+            int maxMaxTransmitPacketSize = mBluetoothSocket.getMaxTransmitPacketSize();
+            int maxReceivePacketSize = mBluetoothSocket.getMaxReceivePacketSize();
+            Log.d(TAG, "maxMaxTransmitPacketSize:" + maxMaxTransmitPacketSize);
+            Log.d(TAG, "maxReceivePacketSize    :" + maxReceivePacketSize);
+            Log.d(TAG, "getConnectionType       :" + mBluetoothSocket.getConnectionType());
+            InputStream in = mBluetoothSocket.getInputStream();
+            OutputStream out = mBluetoothSocket.getOutputStream();
+
+            Log.d(TAG, "in:" + in);
+            Log.d(TAG, "out:" + out);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void createInsecureRfcommSocketToServiceRecord(View view) {
+        mDeviceMac = mMacEV.getText().toString().toUpperCase();
+        BluetoothDevice d = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(mDeviceMac);
+        try {
+            Log.d(TAG, "before create");
+            mBluetoothSocket = d.createInsecureRfcommSocketToServiceRecord(mRfcUuid);
+            Log.d(TAG, "mBtSocket:" + mBluetoothSocket);
+            mBluetoothSocket.connect();
+            int maxMaxTransmitPacketSize = mBluetoothSocket.getMaxTransmitPacketSize();
+            int maxReceivePacketSize = mBluetoothSocket.getMaxReceivePacketSize();
+            Log.d(TAG, "maxMaxTransmitPacketSize:" + maxMaxTransmitPacketSize);
+            Log.d(TAG, "maxReceivePacketSize    :" + maxReceivePacketSize);
+            Log.d(TAG, "getConnectionType       :" + mBluetoothSocket.getConnectionType());
+            InputStream in = mBluetoothSocket.getInputStream();
+            OutputStream out = mBluetoothSocket.getOutputStream();
+
+            Log.d(TAG, "in:" + in);
+            Log.d(TAG, "out:" + out);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

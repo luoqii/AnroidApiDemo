@@ -24,6 +24,19 @@
             app:flexWrap="wrap"
             app:alignItems="stretch"
             app:alignContent="stretch" >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RfcommSocketord"
+                android:onClick="createRfcommSocketToServiceRecord"/>
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="inscureRfcommSocketord"
+                android:onClick="createInsecureRfcommSocketToServiceRecord"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
