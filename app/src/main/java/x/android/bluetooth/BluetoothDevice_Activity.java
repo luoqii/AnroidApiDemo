@@ -29,6 +29,7 @@ public class BluetoothDevice_Activity extends Activity {
     private String mDeviceMac;
     private UUID mRfcUuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     private BluetoothSocket mBluetoothSocket;
+    private int mPsm = 7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class BluetoothDevice_Activity extends Activity {
         text = "54:0E:2D:0F:6A:D6";
         text = "18:E7:77:00:05:66";
         text = "18:E7:77:00:32:37";
+        text = "66:66:11:11:21:24";
 
         mMacEV.setText(text);
     }
@@ -130,7 +132,6 @@ public class BluetoothDevice_Activity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -155,6 +156,53 @@ public class BluetoothDevice_Activity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    public void createL2capChannel(View view) {
+        mDeviceMac = mMacEV.getText().toString().toUpperCase();
+        BluetoothDevice d = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(mDeviceMac);
+        try {
+            Log.d(TAG, "before create");
+            mBluetoothSocket = d.createL2capChannel(mPsm);
+            Log.d(TAG, "mBtSocket:" + mBluetoothSocket);
+            mBluetoothSocket.connect();
+            int maxMaxTransmitPacketSize = mBluetoothSocket.getMaxTransmitPacketSize();
+            int maxReceivePacketSize = mBluetoothSocket.getMaxReceivePacketSize();
+            Log.d(TAG, "maxMaxTransmitPacketSize:" + maxMaxTransmitPacketSize);
+            Log.d(TAG, "maxReceivePacketSize    :" + maxReceivePacketSize);
+            Log.d(TAG, "getConnectionType       :" + mBluetoothSocket.getConnectionType());
+            InputStream in = mBluetoothSocket.getInputStream();
+            OutputStream out = mBluetoothSocket.getOutputStream();
+
+            Log.d(TAG, "in:" + in);
+            Log.d(TAG, "out:" + out);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    public void createInsecureL2capChannel(View view) {
+        mDeviceMac = mMacEV.getText().toString().toUpperCase();
+        BluetoothDevice d = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(mDeviceMac);
+        try {
+            Log.d(TAG, "before create");
+            mBluetoothSocket = d.createInsecureL2capChannel(mPsm);
+            Log.d(TAG, "mBtSocket:" + mBluetoothSocket);
+            mBluetoothSocket.connect();
+            int maxMaxTransmitPacketSize = mBluetoothSocket.getMaxTransmitPacketSize();
+            int maxReceivePacketSize = mBluetoothSocket.getMaxReceivePacketSize();
+            Log.d(TAG, "maxMaxTransmitPacketSize:" + maxMaxTransmitPacketSize);
+            Log.d(TAG, "maxReceivePacketSize    :" + maxReceivePacketSize);
+            Log.d(TAG, "getConnectionType       :" + mBluetoothSocket.getConnectionType());
+            InputStream in = mBluetoothSocket.getInputStream();
+            OutputStream out = mBluetoothSocket.getOutputStream();
+
+            Log.d(TAG, "in:" + in);
+            Log.d(TAG, "out:" + out);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
