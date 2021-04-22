@@ -28,31 +28,35 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RfcommSocketord"
+                android:text="rfcommSocketord"
                 android:onClick="createRfcommSocketToServiceRecord"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="inscureRfcommSocketord"
+                android:text="inscureRfcommSocket"
                 android:onClick="createInsecureRfcommSocketToServiceRecord"/>
-
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="L2capChannel"
+                android:text="l2capChannel"
                 android:onClick="createL2capChannel"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="inSecureL2capChannel"
                 android:onClick="createInsecureL2capChannel"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="closeBtSocket"
+                android:onClick="closeBtSocket"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="getBondState "
                 android:onClick="getBondState" />
-
 
             <Button
                 android:layout_width="wrap_content"

@@ -3,6 +3,7 @@ package x.android.bluetooth;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothSocket;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,6 +31,8 @@ public class BluetoothDevice_Activity extends Activity {
     private UUID mRfcUuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     private BluetoothSocket mBluetoothSocket;
     private int mPsm = 7;
+    private InputStream mIn;
+    private OutputStream mOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class BluetoothDevice_Activity extends Activity {
         text = "18:E7:77:00:05:66";
         text = "18:E7:77:00:32:37";
         text = "66:66:11:11:21:24";
+        text = "0C:60:46:6A:D8:D1";
 
         mMacEV.setText(text);
     }
@@ -124,11 +128,11 @@ public class BluetoothDevice_Activity extends Activity {
             Log.d(TAG, "maxMaxTransmitPacketSize:" + maxMaxTransmitPacketSize);
             Log.d(TAG, "maxReceivePacketSize    :" + maxReceivePacketSize);
             Log.d(TAG, "getConnectionType       :" + mBluetoothSocket.getConnectionType());
-            InputStream in = mBluetoothSocket.getInputStream();
-            OutputStream out = mBluetoothSocket.getOutputStream();
+            mIn = mBluetoothSocket.getInputStream();
+            mOut = mBluetoothSocket.getOutputStream();
 
-            Log.d(TAG, "in:" + in);
-            Log.d(TAG, "out:" + out);
+            Log.d(TAG, "mIn:" + mIn);
+            Log.d(TAG, "mOut:" + mOut);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -148,11 +152,11 @@ public class BluetoothDevice_Activity extends Activity {
             Log.d(TAG, "maxMaxTransmitPacketSize:" + maxMaxTransmitPacketSize);
             Log.d(TAG, "maxReceivePacketSize    :" + maxReceivePacketSize);
             Log.d(TAG, "getConnectionType       :" + mBluetoothSocket.getConnectionType());
-            InputStream in = mBluetoothSocket.getInputStream();
-            OutputStream out = mBluetoothSocket.getOutputStream();
+            mIn = mBluetoothSocket.getInputStream();
+            mOut = mBluetoothSocket.getOutputStream();
 
-            Log.d(TAG, "in:" + in);
-            Log.d(TAG, "out:" + out);
+            Log.d(TAG, "mIn:" + mIn);
+            Log.d(TAG, "mOut:" + mOut);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -172,11 +176,11 @@ public class BluetoothDevice_Activity extends Activity {
             Log.d(TAG, "maxMaxTransmitPacketSize:" + maxMaxTransmitPacketSize);
             Log.d(TAG, "maxReceivePacketSize    :" + maxReceivePacketSize);
             Log.d(TAG, "getConnectionType       :" + mBluetoothSocket.getConnectionType());
-            InputStream in = mBluetoothSocket.getInputStream();
-            OutputStream out = mBluetoothSocket.getOutputStream();
+            mIn = mBluetoothSocket.getInputStream();
+            mOut = mBluetoothSocket.getOutputStream();
 
-            Log.d(TAG, "in:" + in);
-            Log.d(TAG, "out:" + out);
+            Log.d(TAG, "mIn:" + mIn);
+            Log.d(TAG, "mOut:" + mOut);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -196,13 +200,38 @@ public class BluetoothDevice_Activity extends Activity {
             Log.d(TAG, "maxMaxTransmitPacketSize:" + maxMaxTransmitPacketSize);
             Log.d(TAG, "maxReceivePacketSize    :" + maxReceivePacketSize);
             Log.d(TAG, "getConnectionType       :" + mBluetoothSocket.getConnectionType());
-            InputStream in = mBluetoothSocket.getInputStream();
-            OutputStream out = mBluetoothSocket.getOutputStream();
+            mIn = mBluetoothSocket.getInputStream();
+            mOut = mBluetoothSocket.getOutputStream();
 
-            Log.d(TAG, "in:" + in);
-            Log.d(TAG, "out:" + out);
+            Log.d(TAG, "mIn:" + mIn);
+            Log.d(TAG, "mOut:" + mOut);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public void closeBtSocket(View view) {
+        try {
+            if (null != mBluetoothSocket) {
+                mBluetoothSocket.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            if (null != mIn) {
+                mIn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            if (null != mOut) {
+                mOut.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
