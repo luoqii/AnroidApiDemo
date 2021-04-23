@@ -6,12 +6,16 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 
 import com.bysong.android.apidemo.R;
 
+import org.bbs.android.commonlib.BtUtils;
 import org.bbs.android.log.Log;
 
 import java.util.List;
@@ -26,6 +30,7 @@ public class BluetoothAdapter_MainActivity extends AppCompatActivity {
     private BluetoothProfile.ServiceListener mListener;
     private int mProfile = BluetoothProfile.HEADSET;
     private BluetoothProfile mProxy;
+    private BroadcastReceiver mBr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +58,15 @@ public class BluetoothAdapter_MainActivity extends AppCompatActivity {
             @Override
             public void onServiceDisconnected(int profile) {
                 Log.w(TAG, "onServiceConnected profile:" + profile);
+            }
+        };
+
+        mBr = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                StringBuilder builder = new StringBuilder();
+                BtUtils.dumpBtIntentSmartly(builder, intent);
+                Log.d(TAG, "onReceive " + builder.toString());
             }
         };
     }
@@ -117,5 +131,18 @@ public class BluetoothAdapter_MainActivity extends AppCompatActivity {
 
     public void closeProfileProxy(View view) {
         mBtAdapter.closeProfileProxy(mProfile, mProxy);
+    }
+
+    public void registerReceiver(View view){
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
+        intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+        intentFilter.addAction(BluetoothAdapter.ACTION_LOCAL_NAME_CHANGED);
+        intentFilter.addAction(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+        intentFilter.addAction(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+        intentFilter.addAction(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
+        intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+        registerReceiver(mBr, intentFilter);
     }
 }

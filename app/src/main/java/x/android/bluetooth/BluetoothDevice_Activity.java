@@ -5,6 +5,10 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothSocket;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +37,7 @@ public class BluetoothDevice_Activity extends Activity {
     private int mPsm = 7;
     private InputStream mIn;
     private OutputStream mOut;
+    private BroadcastReceiver mBr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,15 @@ public class BluetoothDevice_Activity extends Activity {
         text = "0C:60:46:6A:D8:D1";
 
         mMacEV.setText(text);
+
+        mBr = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                StringBuilder builder = new StringBuilder();
+                BtUtils.dumpBtIntentSmartly(builder, intent);
+                Log.d(TAG, "onReceive " + builder.toString());
+            }
+        };
     }
 
     public void getBondState(View view) {
@@ -234,4 +248,17 @@ public class BluetoothDevice_Activity extends Activity {
         }
     }
 
+    public void registerReceiver(View view){
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
+        intentFilter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED);
+        intentFilter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
+        intentFilter.addAction(BluetoothDevice.ACTION_CLASS_CHANGED);
+        intentFilter.addAction(BluetoothDevice.ACTION_FOUND);
+        intentFilter.addAction(BluetoothDevice.ACTION_NAME_CHANGED);
+        intentFilter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST);
+        intentFilter.addAction(BluetoothDevice.ACTION_TWS_PLUS_DEVICE_PAIR);
+        intentFilter.addAction(BluetoothDevice.ACTION_UUID);
+        registerReceiver(mBr, intentFilter);
+    }
 }
