@@ -145,4 +145,8 @@ public class BluetoothAdapter_MainActivity extends AppCompatActivity {
         intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
         registerReceiver(mBr, intentFilter);
     }
+
+    public void startDiscovery(View view) {
+        mBtAdapter.startDiscovery();
+    }
 }

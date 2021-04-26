@@ -37,5 +37,15 @@
             android:layout_height="wrap_content"
             android:text="getBondedDevices"
             android:onClick="getBondedDevices" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="registerReceiver"
+            android:onClick="registerReceiver" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="startDiscovery"
+            android:onClick="startDiscovery" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
