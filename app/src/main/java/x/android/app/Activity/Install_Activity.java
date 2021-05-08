@@ -52,7 +52,6 @@ public class Install_Activity extends AppCompatActivity {
         AppUtils.installApp(destFile.toString());
     }
 
-    @RequiresPermission("android.permission.REQUEST_INSTALL_PACKAGES")
     public void installNrfLogger(View view){
         String assetFilePath = "apk/nRFLogger.apk";
         File destFile = new File(Utils.getApp().getExternalCacheDir(), "app.apk");

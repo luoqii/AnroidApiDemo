@@ -49,7 +49,7 @@ public class BluetoothDevice_Activity extends Activity {
         String text = "";
         text = "54:0E:2D:0F:6A:D6";
         text = "18:E7:77:00:05:65";
-        text = "22:22:08:DC:6C:32";
+//        text = "22:22:08:DC:6C:32";
 //        text = "18:E7:77:00:32:37";
 //        text = "66:66:11:11:21:24";
 //        text = "0C:60:46:6A:D8:D1";

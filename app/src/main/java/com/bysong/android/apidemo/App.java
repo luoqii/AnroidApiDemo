@@ -2,6 +2,7 @@ package com.bysong.android.apidemo;
 
 import android.app.Application;
 
+import org.bbs.android.commonlib.ExceptionCatcher;
 import org.bbs.android.log.Log;
 
 import java.io.File;
@@ -56,6 +57,7 @@ public class App extends Application {
     }
 
     void initLog() {
+        ExceptionCatcher.attachExceptionHandler(this);
         java.util.logging.Logger logger = java.util.logging.Logger.getLogger("com.bysong.android.apidemo");
         logger.setLevel(Level.ALL);
         logger.setUseParentHandlers(false);

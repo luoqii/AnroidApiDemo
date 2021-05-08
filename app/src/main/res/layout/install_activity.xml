@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="x.android.app.Activity.Activity_Activity">
+    tools:context="x.android.app.Activity.Install_Activity">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -14,11 +14,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="installNrfConnect"
-            android:onClick="requestPermissions" />
+            android:onClick="installNrfConnect" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="installNrfLogger"
-            android:onClick="requestPermissions" />
+            android:onClick="installNrfLogger" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
