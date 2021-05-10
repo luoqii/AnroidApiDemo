@@ -46,6 +46,24 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="x.java.util.Random_Activity"
+            android:label="java/util/random">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="x.java.security.SecureRandom_Activity"
+            android:label="java/security/SecureRandom">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="x.android.service.notification.NotificationServiceActivity"
             android:label="android/service/notification/NotificationListenerService">
             <intent-filter>
