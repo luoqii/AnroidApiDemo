@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.bysong.android.apidemo.R;
 
+import org.bbs.android.commonlib.BtUtils;
 import org.bbs.android.log.Log;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class BluetoothLeScanner_Activity extends AppCompatActivity {
 
     private static final String TAG = BluetoothLeScanner_Activity.class.getSimpleName();
     private BluetoothLeScanner mBleScanner;
-    private ScanCallback mCallbck   ;
+    private ScanCallback mCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class BluetoothLeScanner_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_bluetooth_le_scanner);
 
         mBleScanner = BluetoothAdapter.getDefaultAdapter().getBluetoothLeScanner();
-        mCallbck = new ScanCallback() {
+        mCallback = new ScanCallback() {
             @Override
             public void onScanResult(int callbackType, ScanResult result) {
                 super.onScanResult(callbackType, result);
@@ -49,16 +50,18 @@ public class BluetoothLeScanner_Activity extends AppCompatActivity {
             public void onScanFailed(int errorCode) {
                 super.onScanFailed(errorCode);
 
-                Log.d(TAG, "onScanFailed. errorCode:" + errorCode);
+                Log.w(TAG, "onScanFailed. errorCode:" + BtUtils.toScanFailedReasonString(errorCode));
             }
         };
     }
 
     public void startLeScan(View view) {
-        mBleScanner.startScan(mCallbck);
+        Log.d(TAG, "startScan mCallback:" + mCallback);
+        mBleScanner.startScan(mCallback);
     }
 
     public void stopLeScan(View view) {
-        mBleScanner.stopScan(mCallbck);
+        Log.d(TAG, "stopLeScan mCallback:" + mCallback);
+        mBleScanner.stopScan(mCallback);
     }
 }

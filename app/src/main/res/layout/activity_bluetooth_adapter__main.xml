@@ -47,5 +47,11 @@
             android:layout_height="wrap_content"
             android:text="startDiscovery"
             android:onClick="startDiscovery" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="requestLocationPermission"
+            android:onClick="requestLocationPermission" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

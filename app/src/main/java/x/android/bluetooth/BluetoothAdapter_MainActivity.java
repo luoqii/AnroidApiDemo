@@ -1,7 +1,9 @@
 package x.android.bluetooth;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
@@ -10,6 +12,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -104,6 +107,13 @@ public class BluetoothAdapter_MainActivity extends AppCompatActivity {
             }
             Log.w(TAG, message);
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void requestLocationPermission(View view){
+        String[] permissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION};
+        int requestCode = 1;
+        requestPermissions(permissions, requestCode);
     }
 
     public void startLeScan(View view) {
